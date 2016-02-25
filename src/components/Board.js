@@ -55,18 +55,18 @@ class Board extends React.Component {
       }
 
       let player = this.state.board[i].players;
-        if (player === 1) {
-          background = '#cc0000';
-          size = 25;
-        }
-        else if (player === 2) {
-          background = '#00ff00';
-          size = 25;
-        }
-        else {
-          background = '#000';
-          size = 10;
-        }
+      if (player === 1) {
+        background = '#cc0000';
+        size = 25;
+      }
+      else if (player === 2) {
+        background = '#00ff00';
+        size = 25;
+      }
+      else {
+        background = '#000';
+        size = 10;
+      }
       let point = <Point
         key={i}
         number={i}
@@ -88,6 +88,9 @@ class Board extends React.Component {
           {points}
         </div>
         <div className="wrap"></div>
+        <div className="player-turn">To move:
+          <div>Player {this.state.currentPlayer} </div>
+        </div>
       </div>
     )
   }
@@ -95,20 +98,20 @@ class Board extends React.Component {
   onPointClick(i) {
     this.setState({pieceCount: this.state.pieceCount + 1});
     if (this.state.pieceCount < 18) {
-    let player = this.state.board[i].players;
-    let currentPlayer = this.state.currentPlayer;
-    if (player === 0) {
-      if (currentPlayer === 1) {
-        this.state.currentPlayer = 2;
-        this.state.board[i].players = 1;
+      let player = this.state.board[i].players;
+      let currentPlayer = this.state.currentPlayer;
+      if (player === 0) {
+        if (currentPlayer === 1) {
+          this.state.currentPlayer = 2;
+          this.state.board[i].players = 1;
+        }
+        else if (currentPlayer === 2) {
+          this.state.currentPlayer = 1;
+          this.state.board[i].players = 2;
+        }
       }
-      else if (currentPlayer === 2) {
-        this.state.currentPlayer = 1;
-        this.state.board[i].players = 2;
-      }
-    }}
+    }
   }
-
 }
 
 export default Board;

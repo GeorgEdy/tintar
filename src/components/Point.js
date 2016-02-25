@@ -12,7 +12,7 @@ class Point extends React.Component {
     let size = this.props.size;
     let pos = this.props.position;
     let style = {left: pos.x, top: pos.y, backgroundColor: background, width: size, height: size};
-    /*let number = this.props.number;*/
+
     return(
         <span className="point"  style={style} onClick={this.onClick.bind(this)}></span>
     )
