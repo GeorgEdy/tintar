@@ -8,38 +8,7 @@ import Point from './Point';
 class Board extends React.Component {
   constructor() {
     super();
-    const boardSize = 400;
-    const bigSquareSize = 300;
-    const smallSquareSize = 150;
-    const pointNumber = 27;
-
-    let board = [];
-    for (let i = 0; i < pointNumber; i++) {
-      if (0 < i < 8) {
-        let x = Math.floor(i % 3) * boardSize / 2;
-        let y = Math.floor(i / 3) * boardSize / 2;
-        let pos = {x: x, y: y};
-
-        board.push({pos, players: 0});
-      }
-      if (9 < i < 18) {
-
-        let x = Math.floor(i % 3) * smallSquareSize / 2;
-        let y = Math.floor(i / 3) * smallSquareSize / 2;
-        let pos = {x: (125 + x), y: (125 + y)};
-        board.push({pos, smallSquareSize, players: 0});
-      }
-      if (19 < i < 27) {
-        let x = Math.floor(i % 3) * bigSquareSize / 2;
-        let y = Math.floor(i / 3) * bigSquareSize / 2;
-        let pos = {x: (50 + x), y: (50 + y)};
-
-        board.push({pos, bigSquareSize, players: 0});
-      }
-    }
-    this.state = {
-      pointNumber, board, boardSize, bigSquareSize, smallSquareSize, currentPlayer: 1, pieceCount: 0
-    }
+    this.state = this.initialState();
   }
 
   render() {
@@ -89,12 +58,50 @@ class Board extends React.Component {
         </div>
         <div className="wrap"></div>
         <div className="player-turn">To move:
-          <div>Player {this.state.currentPlayer} </div>
+          <div>Player {this.state.currentPlayer}</div>
         </div>
+        <div className="restart" onClick={this.resetPieces.bind(this)}>Restart</div>
       </div>
     )
   }
+  initialState() {
+    const boardSize = 400;
+    const bigSquareSize = 300;
+    const smallSquareSize = 150;
+    const pointNumber = 27;
 
+    let board = [];
+    for (let i = 0; i < pointNumber; i++) {
+      if (0 < i < 8) {
+        let x = Math.floor(i % 3) * boardSize / 2;
+        let y = Math.floor(i / 3) * boardSize / 2;
+        let pos = {x: x, y: y};
+
+        board.push({pos, players: 0});
+      }
+      if (9 < i < 18) {
+
+        let x = Math.floor(i % 3) * smallSquareSize / 2;
+        let y = Math.floor(i / 3) * smallSquareSize / 2;
+        let pos = {x: (125 + x), y: (125 + y)};
+        board.push({pos, smallSquareSize, players: 0});
+      }
+      if (19 < i < 27) {
+        let x = Math.floor(i % 3) * bigSquareSize / 2;
+        let y = Math.floor(i / 3) * bigSquareSize / 2;
+        let pos = {x: (50 + x), y: (50 + y)};
+
+        board.push({pos, bigSquareSize, players: 0});
+      }
+    }
+    return {
+      pointNumber, board, boardSize, bigSquareSize, smallSquareSize, currentPlayer: 1, pieceCount: 0
+    };
+  }
+  resetPieces() {
+    this.state = this.initialState();
+    this.forceUpdate();
+  }
   onPointClick(i) {
     this.setState({pieceCount: this.state.pieceCount + 1});
     if (this.state.pieceCount < 18) {

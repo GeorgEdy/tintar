@@ -8,10 +8,10 @@ class Point extends React.Component {
     this.props.onClick(this.props.index)
   }
   render() {
-    let background = this.props.background;
-    let size = this.props.size;
-    let pos = this.props.position;
-    let style = {left: pos.x, top: pos.y, backgroundColor: background, width: size, height: size};
+    const background = this.props.background;
+    const size = this.props.size;
+    const pos = this.props.position;
+    const style = {left: pos.x, top: pos.y, backgroundColor: background, width: size, height: size};
 
     return(
         <span className="point"  style={style} onClick={this.onClick.bind(this)}></span>
