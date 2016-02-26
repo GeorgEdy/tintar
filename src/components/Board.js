@@ -117,6 +117,9 @@ class Board extends React.Component {
           this.state.board[i].players = 2;
         }
       }
+      if (this.state.pieceCount === 17){
+        alert('All pieces were placed');
+      }
     }
   }
 }
