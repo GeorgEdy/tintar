@@ -23,7 +23,7 @@ class Board extends React.Component {
         continue;
       }
 
-      let player = this.state.board[i].players;
+      const player = this.state.board[i].players;
       if (player === 1) {
         background = '#cc0000';
         size = 25;
@@ -73,23 +73,23 @@ class Board extends React.Component {
     let board = [];
     for (let i = 0; i < pointNumber; i++) {
       if (0 < i < 8) {
-        let x = Math.floor(i % 3) * boardSize / 2;
-        let y = Math.floor(i / 3) * boardSize / 2;
-        let pos = {x: x, y: y};
+        const x = Math.floor(i % 3) * boardSize / 2;
+        const y = Math.floor(i / 3) * boardSize / 2;
+        const pos = {x: x, y: y};
 
         board.push({pos, players: 0});
       }
       if (9 < i < 18) {
 
-        let x = Math.floor(i % 3) * smallSquareSize / 2;
-        let y = Math.floor(i / 3) * smallSquareSize / 2;
-        let pos = {x: (125 + x), y: (125 + y)};
+        const x = Math.floor(i % 3) * smallSquareSize / 2;
+        const y = Math.floor(i / 3) * smallSquareSize / 2;
+        const pos = {x: (125 + x), y: (125 + y)};
         board.push({pos, smallSquareSize, players: 0});
       }
       if (19 < i < 27) {
-        let x = Math.floor(i % 3) * bigSquareSize / 2;
-        let y = Math.floor(i / 3) * bigSquareSize / 2;
-        let pos = {x: (50 + x), y: (50 + y)};
+        const x = Math.floor(i % 3) * bigSquareSize / 2;
+        const y = Math.floor(i / 3) * bigSquareSize / 2;
+        const pos = {x: (50 + x), y: (50 + y)};
 
         board.push({pos, bigSquareSize, players: 0});
       }
